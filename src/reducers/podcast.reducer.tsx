@@ -1,21 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import PodcastModel from "../models/Podcast.model";
+import PodcastDetailModel from "../models/PodcastDetail.model";
+import PodcastTrackModel from "../models/PodcastTrack.model";
+import SelectedPodcastModel from "../models/SelectedPodcast.model";
 
 
 const initialState = {
-    podcasts: [],
-    podcast: {},
-    podcastTrack: {} as any,
-    podcastDetail: [] as any[],
-    selectedPodcast: {} as any,
-    selectedPodcastList: [] as any[]
+    podcasts: [] as PodcastModel[],
+    podcast: {} as PodcastModel,
+    podcastTrack: {} as PodcastTrackModel,
+    podcastDetail: [] as PodcastTrackModel[],
+    selectedPodcast: {} as SelectedPodcastModel,
+    selectedPodcastList: [] as SelectedPodcastModel[]
 };
-interface SateInterface {
-    podcasts: any[], 
-    podcast: any, 
-    podcastDetail: any[], 
-    selectedPodcast: any,
-    podcastTrack: any,
-    selectedPodcastList: any[]
+export interface SateInterface {
+    podcasts: PodcastModel[], 
+    podcast: PodcastModel, 
+    podcastDetail: PodcastTrackModel[], 
+    selectedPodcast: SelectedPodcastModel,
+    podcastTrack: PodcastTrackModel,
+    selectedPodcastList: SelectedPodcastModel[]
 }
 interface ActionInterface {
     payload: any, 
@@ -32,20 +36,24 @@ export const podcastSlice = createSlice({
       setPodcast: (state: SateInterface, action: ActionInterface) => {
         state.selectedPodcastList = action.payload.podcastList
         state.selectedPodcast = action.payload.podcast
-
-        console.log("Setted", action.payload.podcastList)
       },
       setPodcastDetails: (state: SateInterface, action: ActionInterface) => {
         state.podcastDetail = action.payload
       },
       setPodcastTrack: (state: SateInterface, action: ActionInterface) => {
         state.podcastTrack = action.payload
-        console.log('setPodcastTrack', action.payload)
       },
       setError: (state: SateInterface, action: ActionInterface) => {
         alert(action.payload.error)
-      }
+      },
+      resetPodcastsDetails: (state: SateInterface) => {
+        state.podcast = {} as PodcastModel
+        state.podcastTrack = {} as PodcastTrackModel
+        state.podcastDetail = [] as PodcastDetailModel[]
+        state.selectedPodcast = {} as SelectedPodcastModel
+        state.selectedPodcastList = [] as SelectedPodcastModel[]
+      },
     }
   })
-export const { setPodcast, setPodcasts, setPodcastDetails, setError, setPodcastTrack } = podcastSlice.actions
+export const { resetPodcastsDetails, setPodcast, setPodcasts, setPodcastDetails, setError, setPodcastTrack } = podcastSlice.actions
 export default podcastSlice.reducer

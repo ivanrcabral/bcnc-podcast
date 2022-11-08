@@ -1,0 +1,8 @@
+@import "./colors.scss";
+
+header{
+    padding: 25px;
+    background-color: $white;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 9px $smoke;
+}

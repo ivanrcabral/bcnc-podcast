@@ -1,16 +1,12 @@
 import { Card } from "react-bootstrap";
+import { getLastImage } from "../helpers/podcast.helper";
+import { SateInterface } from "../reducers/podcast.reducer";
 
 
-export default function PodcastCard(props: {podcast:any}){
-    const getLastImage = (images: any[]) => {
-        console.log({images})
-        let image:{label: string} = {label:''}
-        image = images[images.length - 1]
-        return image.label ? image.label:"URLIMGDEFAULT"
-    }
+export default function PodcastCard(props: {podcast:SateInterface}){
 
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className="margin-auto" style={{ width: '18rem' }}>
             <Card.Img variant="top" src={getLastImage(props.podcast.selectedPodcast["im:image"])} />
             <Card.Body>
                 <Card.Text>

@@ -55,7 +55,7 @@ export function getPodcastDetails(url: string) {
 
 export function getPodcast(id: String, podcast:any) {
     return async (dispatch: any) => {
-        axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent("https://itunes.apple.com/lookup?id=")+id}`).then((resp: any)=>{
+        axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(process.env.REACT_APP_ITUNES_LOOKUP +"?id="+id)}`).then((resp: any)=>{
             if (resp && resp.data && resp.data.contents){
                 const response = JSON.parse(resp.data.contents)
                 dispatch(setPodcast({podcastList: response.results, podcast}));
@@ -68,7 +68,7 @@ export function getPodcast(id: String, podcast:any) {
 export function getPodcasts() {
     return async (dispatch: any) => {
         if (!CookieService.getCookie(CookieName.PODCAST))
-            axios.get("https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json").then((resp: any)=>{
+            axios.get(process.env.REACT_APP_ITUNES_CATALOG??'').then((resp: any)=>{
                 if (resp && resp.data && resp.data.feed && resp.data.feed.entry){
                     CookieService.setCookie(CookieName.PODCAST, JSON.stringify(resp.data.feed.entry))
                     dispatch(setPodcasts(resp.data.feed.entry));

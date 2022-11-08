@@ -1,0 +1,43 @@
+@import './colors.scss';
+
+.podcast-box{
+    user-select: none;
+    background: $white;
+    position: relative;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 1px 1px 6px $smoke;
+    width: 230px;
+    text-align: center;
+    margin: 10px;
+    color: $dark;
+    text-decoration: none;
+    padding: 20px;
+    padding-top: 80px;
+    margin-top: 80px;
+    transition: .4s all;
+    top: 0px;
+
+    &:hover{
+        top: -8px;
+    }
+
+    & img{
+        position: absolute;
+        width: 151px;
+        height: 151px;
+        top: -82px;
+        margin: auto;
+        border: 5px solid $white;
+        border-radius: 100%;
+        left: -1px;
+        right: -1px;
+    }
+}
+
+.podcast-details{
+    position: relative;
+    box-shadow: 1px 1px 6px $smoke;
+    background-color: $white;
+    padding: 20px;
+}

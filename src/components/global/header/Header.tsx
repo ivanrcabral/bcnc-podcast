@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 
 
 export default function Header(){
     return (
         <header>
-            <div>Podcaster</div>
+            <Link to={'/'}>PODCASTER</Link>
         </header>
     )
 }
